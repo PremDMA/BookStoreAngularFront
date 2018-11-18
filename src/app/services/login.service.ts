@@ -21,12 +21,15 @@ export class LoginService {
   }
 
   checkSession() {
-    let url = "http://localhost:8181/checkSession";
-    
-    let headers = new Headers ({
-      'x-auth-token' : localStorage.getItem('xAuthToken')
+    const url = 'http://localhost:8181/checkSession';
+    const xToken = localStorage.getItem('xAuthToken');
+    const basicHeader = 'Basic ' + localStorage.getItem('credentials');
+    const headers = new Headers({
+      'x-auth-token' : xToken,
+      'Authorization' : basicHeader
     });
-
+    console.log(url);
+    console.log(headers);
     return this.http.get(url, {headers: headers});
   }
 

@@ -19,6 +19,8 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.loginService.logout().subscribe(
       res => {
+        localStorage.removeItem('xAuthToken');
+        localStorage.removeItem('credentials');
         location.reload();
       },
       error => {
